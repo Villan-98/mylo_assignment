@@ -27,11 +27,22 @@ const user=db.define('user',{
 {
 	timestamps:false
 })
+const permission=db.define('permission',{
+	id:{
+		autoIncrement:true,
+		primaryKey:true,
+		type:datatype.INTEGER
+	},
+	value:{
+		type:datatype.STRING,
+		allowNull:false
+	}
+})
 db.sync({
 
 }).then(()=>{
 	console.log("db is synced")
 })
 module.exports={
-	db,user
+	db,user,permission
 }

@@ -1,5 +1,6 @@
 const router=require('express').Router()
 const user=require('../controller/user')
+const passport=require('passport')
 router.post('/signUp',(req,res)=>{
 	console.log("hello dear")
 	user.addUser(req.body)
@@ -10,4 +11,8 @@ router.post('/signUp',(req,res)=>{
 			res.status(500).json({message:err.message})
 		})
 })
+router.post('/signIn',passport.authenticate('local',{
+	successRedirect:'/home',
+	failureRedirect:'/user/signIn'
+}))
 module.exports=router

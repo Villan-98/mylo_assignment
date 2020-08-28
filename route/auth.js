@@ -12,7 +12,7 @@ router.post('/signUp',(req,res)=>{
 		})
 })
 router.post('/signIn',passport.authenticate('local',{
-	successRedirect:'/home',
+	successRedirect:'/api/home',
 	failureRedirect:'/user/signIn'
 }))
 module.exports=router

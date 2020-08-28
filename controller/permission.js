@@ -19,7 +19,7 @@ module.exports={
 		let pid=[]	//to store the ids of permission that user have
 		mapResponse.forEach((ele)=>{
 			pid.push(ele.dataValues.permissionId)
-		}
+		})
 		return permission.findAll({
 			where:{
 				id:pid

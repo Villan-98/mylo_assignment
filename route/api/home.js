@@ -1,15 +1,16 @@
 const router=require('express').Router()
-const rpMap=require('../db/model')
-const ctrlPermission=require('../controller/permission')
+const ctrlPermission=require('../../controller/permission')
 router.get('/',(req,res)=>{
 
 	//if user is non-permium
+	console.log(req.user)
 	if(!req.user)
 	{
 		res.status(200).json({
 			data:"basic"
 		})
 	}
+	else{
 	//if user is permium
 	ctrlPermission.getUserPermissions(req.user.dataValues)
 		.then((data)=>{
@@ -20,5 +21,7 @@ router.get('/',(req,res)=>{
 				message:err.message
 			})
 		})
+
+	}
 })
 module.exports=router

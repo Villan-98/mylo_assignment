@@ -14,9 +14,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/auth',require('./route/auth'))
-app.use('/permission',require('./route/permission'))
-app.use('/role',require('./route/role'))
-app.use('/home',require('./route/home'))
+app.use('/admin',require('./route/admin'))
+app.use('/api',require('./route/api'))
 app.listen(3000,()=>
 	console.log("http://localhost:3000")
 )

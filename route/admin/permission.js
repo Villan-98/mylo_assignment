@@ -1,5 +1,5 @@
 const router=require('express').Router()
-const ctrlPermission=require('../controller/permission')
+const ctrlPermission=require('../../controller/permission')
 router.post('/',(req,res)=>{
 		
 		ctrlPermission.addPermission(req.body)

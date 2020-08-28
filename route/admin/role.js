@@ -1,6 +1,6 @@
 const router=require('express').Router()
-const ctrlRole=require('../controller/role')
-const ctrlMapping=require('../controller/mapping')
+const ctrlRole=require('../../controller/role')
+const ctrlMapping=require('../../controller/mapping')
 router.post('/',(req,res)=>{
 	ctrlRole.addRole(req.body)
 		.then((addedRole)=>{

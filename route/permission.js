@@ -1,6 +1,7 @@
 const router=require('express').Router()
 const ctrlPermission=require('../controller/permission')
 router.post('/',(req,res)=>{
+		
 		ctrlPermission.addPermission(req.body)
 		.then((addedPer)=>{
 			res.status(201).json(addedPer)

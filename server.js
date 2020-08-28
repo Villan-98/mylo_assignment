@@ -6,6 +6,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/auth',require('./route/auth'))
 app.use('/permission',require('./route/permission'))
+app.use('/role',require('./route/role'))
 app.listen(3000,()=>
 	console.log("http://localhost:3000")
 )

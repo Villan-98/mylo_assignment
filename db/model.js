@@ -15,10 +15,6 @@ const user=db.define('user',{
 		type:datatype.STRING,
 		allowNull:false
 	},
-	role:{
-		type:datatype.STRING,
-		allowNull:false
-	},
 	password:{
 		type:datatype.STRING,
 		allowNull:false
@@ -35,14 +31,55 @@ const permission=db.define('permission',{
 	},
 	value:{
 		type:datatype.STRING,
+		allowNull:false,
+		unique:true,
+	}
+},
+{
+	timestamps:false
+})
+const role=db.define('role',{
+	id:{
+		autoIncrement:true,
+		primaryKey:true,
+		type:datatype.INTEGER
+	},
+	value:{
+		type:datatype.STRING,
+		unique:true,
 		allowNull:false
 	}
+},
+{
+	timestamps:false
 })
-db.sync({
+const rpMap=db.define('rpMap',{
+	
+},
+{
+	timestamps:false
+})
+rpMap.belongsTo(permission,{
+	foreignKey:{
+	allowNull:false,
+	primaryKey:true
 
+}
+});
+rpMap.belongsTo(role,{
+	foreignKey:{
+	allowNull:false,
+	primaryKey:true}
+
+});
+rpMap.removeAttribute('id');
+user.belongsTo(role);
+db.sync({
+	//force:true
+	//alter:true
 }).then(()=>{
 	console.log("db is synced")
 })
 module.exports={
-	db,user,permission
+	db,user,permission,rpMap,role
 }

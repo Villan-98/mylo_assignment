@@ -1,4 +1,7 @@
-const {user,role}=require('../db/model')
+const {user,role}=require('../db/model');
+const bcrypt=require('bcrypt');
+const saltRounds=10;
+
 module.exports={
 	addUser:async(data)=>{
 		if(!data.name || !data.role || !data.password)
@@ -12,12 +15,15 @@ module.exports={
 		})
 		if(!roleResponse)
 			throw new Error("Role not valid")
-		console.log(roleResponse);
-		return user.create({
-			name:data.name,
-			roleId:roleResponse.dataValues.id,
-			password:data.password,
-		})
+		bcrypt.hash(data.password, saltRounds, function(err, hashedpassword) {
+			    console.log(hashedpassword)
+			    return user.create({
+				name:data.name,
+				roleId:roleResponse.dataValues.id,
+				password:hashedpassword,
+			})
+		});
+		
 		//throw new Error("hi user");
 	}
 }

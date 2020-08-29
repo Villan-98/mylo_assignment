@@ -8,5 +8,17 @@ module.exports={
 		return role.create({
 			value:data.role
 		})
+	},
+	getRoleById:(data)=>{
+		console.log(data)
+		if(!data.roleId)
+		{
+			throw new Error("please send role id");
+		}
+		return role.findOne({
+			where:{
+				id:data.roleId
+			}
+		})
 	}
 }

@@ -12,7 +12,34 @@ router.post('/',(req,res)=>{
 			})
 		})
 })
+router.use('/mapping',(req,res,next)=>{
+	if(!req.user)
+	{
+		res.status(401).json({
+				message:"Unauthorize access"
+			})
+	}
+	ctrlRole.getRoleById({roleId:req.user.dataValues.roleId})
+	.then((roleResponse)=>{
+		console.log(roleResponse)
+		if(roleResponse.dataValues.value!='admin')
+		{
+			res.status(401).json({
+				message:"Unauthorize access"
+			})
+		}
+
+		next();	
+	})
+	.catch((err)=>{
+		res.status(500).json({
+
+				message:err.message
+			})
+	})
+})
 router.post('/mapping',(req,res)=>{
+	
 	ctrlMapping.addMapping(req.body)
 		.then((addedMap)=>{
 			res.status(201).json(addedMap)

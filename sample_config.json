@@ -1,0 +1,8 @@
+{
+	"db":{
+		"dbName":"mylo",
+		"dbUser":"myloUser",
+		"dbPassword":"myloPassword"
+	},
+	"saltRounds":10
+}

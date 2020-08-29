@@ -1,6 +1,6 @@
 const {user,role}=require('../db/model');
 const bcrypt=require('bcrypt');
-const saltRounds=10;
+const saltRounds=require('../config').saltRounds;
 
 module.exports={
 	addUser:async(data)=>{

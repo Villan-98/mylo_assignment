@@ -11,8 +11,11 @@ router.post('/signUp',(req,res)=>{
 			res.status(500).json({message:err.message})
 		})
 })
+router.get('/signIn',(req,res)=>{
+	res.send("Please send post request on auth/signIn with proper credential")
+})
 router.post('/signIn',passport.authenticate('local',{
 	successRedirect:'/api/home',
-	failureRedirect:'/user/signIn'
+	failureRedirect:'/auth/signIn'
 }))
 module.exports=router

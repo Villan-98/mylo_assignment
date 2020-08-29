@@ -3,7 +3,6 @@ const ctrlPermission=require('../../controller/permission')
 router.get('/',(req,res)=>{
 
 	//if user is non-permium
-	console.log(req.user)
 	if(!req.user)
 	{
 		res.status(200).json({
